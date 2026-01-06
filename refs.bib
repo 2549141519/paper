@@ -627,6 +627,81 @@ series = {SEC'14}
   url={https://api.semanticscholar.org/CorpusID:201685538}
 }
 
+@InProceedings{10.1007/978-3-031-51479-1_18,
+author="Kim, Sungwook
+and Kim, Sungju
+and Shin, Yulim
+and Kim, Sunmi
+and Kim, Jihye
+and Oh, Hyunok",
+editor="Tsudik, Gene
+and Conti, Mauro
+and Liang, Kaitai
+and Smaragdakis, Georgios",
+title="Efficient Transparent Polynomial Commitments for zk-SNARKs",
+booktitle="Computer Security -- ESORICS 2023",
+year="2024",
+publisher="Springer Nature Switzerland",
+address="Cham",
+pages="348--366",
+abstract="This paper proposes a new efficient transparent polynomial commitment scheme. In a polynomial commitment scheme, a prover commits a polynomial and a verifier sends a random point to the prover. The prover then evaluates the polynomial on the given point with generating a proof that the evaluated value is correctly computed according to the committed function. Our construction is based on the polynomial commitment scheme (the DARK compiler) proposed by B{\"u}nz, Fisch, and Szepieniec in EUROCRYPT 2020. The approach of DARK is that a prover recursively generates 2 group elements as the proof for a polynomial with a halved degree and a verifier indirectly verifies them at each recursion. In our construction, a prover commits all the reduced polynomials across recursions at once, and then generates a single aggregated proof for them. By aggregating commitments from recursive steps in DARK, the proposed scheme reduces the proof size by half, and provides better performance in the proof generation and the proof verification compared to DARK. By adopting the proposed scheme, the efficiency of transparent SNARKs from polynomial IOPs can be significantly improved.",
+isbn="978-3-031-51479-1"
+}
+
+@InProceedings{10.1007/978-3-031-68403-6_11,
+author="Kothapalli, Abhiram
+and Setty, Srinath",
+editor="Reyzin, Leonid
+and Stebila, Douglas",
+title="HyperNova: Recursive Arguments for Customizable Constraint Systems",
+booktitle="Advances in Cryptology -- CRYPTO 2024",
+year="2024",
+publisher="Springer Nature Switzerland",
+address="Cham",
+pages="345--379",
+abstract="We introduce HyperNova, a new recursive argument for proving incremental computations whose steps are expressed with CCS (Setty et al. ePrint 2023/552), a customizable constraint system that simultaneously generalizes Plonkish, R1CS, and AIR without overheads. HyperNova makes four contributions, each resolving a major problem in the area of recursive arguments.",
+isbn="978-3-031-68403-6"
+}
+
+@misc{cryptoeprint:2023/1518,
+      author = {Matteo Campanelli and Antonio Faonio and Dario Fiore and Tianyu Li and Helger Lipmaa},
+      title = {Lookup Arguments: Improvements, Extensions and Applications to Zero-Knowledge Decision Trees},
+      howpublished = {Cryptology {ePrint} Archive, Paper 2023/1518},
+      year = {2023},
+      url = {https://eprint.iacr.org/2023/1518}
+}
+
+@misc{wang2025surveyinteractiveverifiablecomputing,
+      title={A Survey of Interactive Verifiable Computing: Utilizing Low-degree Polynomials}, 
+      author={Angold Wang},
+      year={2025},
+      eprint={2501.05500},
+      archivePrefix={arXiv},
+      primaryClass={cs.LO},
+      url={https://arxiv.org/abs/2501.05500}, 
+}
+
+@misc{cryptoeprint:2020/1069,
+      author = {Matteo Campanelli and Antonio Faonio and Dario Fiore and Anaïs Querol and Hadrián Rodríguez},
+      title = {Lunar: a Toolbox for More Efficient Universal and Updatable {zkSNARKs} and Commit-and-Prove Extensions},
+      howpublished = {Cryptology {ePrint} Archive, Paper 2020/1069},
+      year = {2020},
+      url = {https://eprint.iacr.org/2020/1069}
+}
+
+@InProceedings{10.1007/978-3-540-72788-0_31,
+author="Van Gelder, Allen",
+editor="Marques-Silva, Jo{\~a}o
+and Sakallah, Karem A.",
+title="Verifying Propositional Unsatisfiability: Pitfalls to Avoid",
+booktitle="Theory and Applications of Satisfiability Testing -- SAT 2007",
+year="2007",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="328--333",
+abstract="The importance of producing a certificate of unsatisfiability is increasingly recognized for high performance propositional satisfiability solvers. The leading solvers develop a conflict graph as the basis for deriving (or ``learning'') new clauses. Extracting a resolution derivation from the conflict graph is theoretically straightforward, but it turns out to have some surprising practical pitfalls (as well as the unsurprising problem that resolution proofs can be extremely long). These pitfalls are exposed, solutions are presented, and analyzed for worse cases. Dramatic improvements on industrial benchmarks are demonstrated.",
+isbn="978-3-540-72788-0"
+}
 
 
 
