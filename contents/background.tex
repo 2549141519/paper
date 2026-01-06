@@ -37,7 +37,7 @@ zkSNARK的核心思想是将计算转换为有限域$\mathbb{F}$上的多项式�
 $$\mathcal{C}(x,w) = 0 \iff \{p_{i}(x,w) = 0\}_{i=1}^{m}$$
 其中$p_{i}: \mathbb{F}^{n} \rightarrow \mathbb{F}$是次数至多为$d$的多项式。
 
-这种编码方式利用了多项式的一个基本性质：两个次数为$d$的不同多项式最多在$d$个点上取值相同~\cite{Bayer2013ZeroKnowledgeAF}。因此，对于随机选取的$r \in \mathbb{F}$，如果$p(r) = q(r)$，则$p = q$的概率至少为$1 - d/|\mathbb{F}|$。这一性质使得验证者可以通过在单个随机点检验多项式相等性来高效完成验证，而无需检查整个多项式。
+这种编码方式利用了多项式的一个基本性质：两个次数为$d$的不同多项式最多在$d$个点上取值相同~\cite{Bayer2013ZeroKnowledgeAF}。因此，对于随机选取的$r \in \mathbb{F}$，如果$p(r) = q(r)$，则$p = q$的概率至少为$1 - d/|\mathbb{F}|$。这一性质使得验证者可以通过在单个随机点检验多项式相等性来高效完成验证，而无需检查整个多项式。\cite{10.1007/978-3-031-51479-1_18}
 
 \begin{figure}
     \centering
@@ -63,7 +63,7 @@ zkSNARK的简洁性源于多项式承诺机制，复杂的计算被归约为常�
 \begin{description}
     \item[门约束（Gate Constraints）] 门约束将计算操作转换为多项式方程。对于每种操作类型，多项式$p_{g}: \mathbb{F}^{m} \rightarrow \mathbb{F}$编码其语义：
     $$p_{g}(M_{i,c_{1}}, M_{i,c_{2}}, ..., M_{i+r,c_{3}}) = 0, \quad \forall i \in [k]$$
-    这使得zkSNARK可以通过证明这些多项式求值为零来证明计算的正确性。门约束的灵活性在于可以定义自定义门（Custom Gates），从而高效地表达特定的计算模式。
+    这使得zkSNARK可以通过证明这些多项式求值为零来证明计算的正确性。门约束的灵活性在于可以定义自定义门（Custom Gates），从而高效地表达特定的计算模式。\cite{10.1007/978-3-031-68403-6_11}
     
     \item[复制约束（Copy Constraints）] 复制约束在电路中建立多项式相等关系：
     $$M_{i_{1},j_{1}} - M_{i_{2},j_{2}} = 0$$
@@ -71,7 +71,7 @@ zkSNARK的简洁性源于多项式承诺机制，复杂的计算被归约为常�
     
     \item[查找约束（Lookup Constraints）] 查找约束将某些操作归约为多项式包含性检查：
     $$(f_{1}(M_{i}), ..., f_{m}(M_{i})) \in T \subseteq \mathbb{F}^{m}$$
-    通过预计算查找表$T$，范围检查等操作可以简化为简单的多项式求值，而非复杂的代数表达式。这一机制显著减少了约束数量，提升了证明效率。
+    通过预计算查找表$T$，范围检查等操作可以简化为简单的多项式求值，而非复杂的代数表达式。这一机制显著减少了约束数量，提升了证明效率。\cite{cryptoeprint:2023/1518}
 
     \item[置换约束（Shuffle Constraints）] 置乱约束要求矩阵$M$中的两列$a$与$b$作为元素集合满足集合相等性：两列必须包含完全相同的元素且重数一致，而与元素顺序无关。形式化表示为：
     $$\{a_{i}\}_{i \in [k]} =_{\text{multiset}} \{b_{i}\}_{i \in [k]}$$
@@ -93,7 +93,7 @@ PLONKish的优雅之处在于将任意计算转换为zkSNARK可高效证明的�
 
 \subsection{零知识虚拟机}\label{zkvm}
 
-虽然PLONKish算术化为编码计算提供了强大的框架，但随着程序复杂性的增长，直接为复杂程序构造算术电路变得越来越具有挑战性。zkVM通过在高级程序和低级约束系统之间引入抽象层来解决这一可扩展性挑战。
+虽然PLONKish算术化为编码计算提供了强大的框架，但随着程序复杂性的增长，直接为复杂程序构造算术电路变得越来越具有挑战性。zkVM通过在高级程序和低级约束系统之间引入抽象层来解决这一可扩展性挑战。\cite{wang2025surveyinteractiveverifiablecomputing}
 
 zkVM是一种专门为生成程序执行的zkSNARK证明而设计的虚拟机架构~\cite{10.1007/978-3-031-58751-1_1}。设$\mathcal{P}$为程序，$I$为其输入，$S = (s_0, s_1, \ldots, s_T)$为执行轨迹，其中每个$s_i$表示步骤$i$时的机器状态\cite{2025arXiv250817518G}。zkVM通过证明状态转换的有效性来证明$\mathcal{P}(I)$产生输出$O$：
 $$s_{i+1} = \delta(s_i, \text{inst}_i), \quad \forall i \in [0, T-1]$$
@@ -112,7 +112,7 @@ $$\mathcal{C}_{\text{zkVM}} = \bigwedge_{i=0}^{T-1} \mathcal{C}_{\text{inst}_i}(
 
 如图\ref{fig:zkvm-architecture}所示，ZKVM零知识证明虚拟机通过五层架构实现从高级程序到零知识证明的完整转换流程。系统以待证明程序的字节码（如0x694e92...、0x64f798...等）及输入数据（如0101序列）作为私有见证数据，输出最终证明（Proof）供验证者验证。架构的五个核心层次为：\textbf{(1) 表达式语句层（Expression Statements）}：将程序执行转换为一系列表达式语句，描述计算的语义逻辑。\textbf{(2) 算术化层（Arithmetization/Plonk）}：采用PLONKish算术化方案，将表达式语句转化为约束系统，包括门约束、复制约束和查找约束，形成执行轨迹矩阵。\textbf{(3) 多项式层（Polynomials）}：将约束系统编码为多项式形式，利用多项式承诺的代数性质实现高效证明。\textbf{(4) 承诺方案层（Commitment Scheme）}：对多项式进行密码学承诺，常用方案包括KZG承诺或FRI承诺，确保证明的简洁性与安全性。\textbf{(5) 累加方案层（Accumulation Scheme）}：通过证明累加技术实现递归证明或批量验证，进一步压缩证明规模。整个架构通过层层转换，将通用计算转化为可验证的零知识证明，实现了程序执行正确性的高效可验证性。
 
-这种架构相比直接算术化提供了几个关键优势。首先，内存操作通过具有地址-值对$(a, v) \in \mathbb{F} \times \mathbb{F}$的全局内存模型统一处理。其次，控制流通过程序计数器$pc \in \mathbb{F}$管理，该计数器对指令执行进行排序。第三，模块化的指令约束使得证明组合和优化成为可能。
+这种架构相比直接算术化提供了几个关键优势。首先，内存操作通过具有地址-值对$(a, v) \in \mathbb{F} \times \mathbb{F}$的全局内存模型统一处理。其次，控制流通过程序计数器$pc \in \mathbb{F}$管理，该计数器对指令执行进行排序。第三，模块化的指令约束使得证明组合和优化成为可能。\cite{cryptoeprint:2020/1069}
 
 从程序到证明的转换遵循两阶段过程：程序$\mathcal{P}$首先被编译为zkVM字节码，然后zkVM执行生成使用zkSNARK证明的约束。这种关注点分离使得zkVM能够处理任意程序复杂性，同时保持高效的证明生成，因为电路大小仅取决于执行轨迹长度而非程序结构~\cite{cryptoeprint:2024/387}。
 
@@ -195,7 +195,7 @@ SAT编码的核心在于编码函数$\mathcal{E}$，它将程序构造映射为�
     \textbf{不可满足性证明（UNSAT Proof）:}
     对于不可满足公式$F^*$，归结证明（resolution proof）通过逐步推导最终得到空子句$\bot$来证明不存在满足赋值。设$D^* = \{d^*_1, d^*_2, \ldots, d^*_k\}$为导出子句序列，$T^* = \{t^*_1, t^*_2, \ldots, t^*_{2k}\}$为归结过程中使用的子句轨迹，$\text{pivot}_i$为第$i$步归结所使用的枢轴变量（pivot variable）。归结规则的核心在于：对于包含$\text{pivot}$和$\neg\text{pivot}$的两个父子句，通过消去枢轴变量生成归结式（resolvent）。为验证UNSAT结果，需满足以下关系：(1) 每个导出子句$d^*_i$或属于原始公式$F^*$，或通过归结规则从轨迹$T^* \subseteq \{F^* \cup D^*\}$中包含$\text{pivot}_i$和$\neg\text{pivot}_i$的两个父子句导出 (2) 导出子句$d^*_i$包含两个父子句的所有文字，但不包含$\text{pivot}_i$和$\neg\text{pivot}_i$，形式化表示为：若父子句为$C_1 = (\text{pivot}_i \vee l_1 \vee \cdots \vee l_p)$和$C_2 = (\neg\text{pivot}_i \vee l'_1 \vee \cdots \vee l'_q)$，则$d^*_i = (l_1 \vee \cdots \vee l_p \vee l'_1 \vee \cdots \vee l'_q)$ (3) 轨迹长度等于导出长度的两倍：$|T^*| = 2|D^*|$，因为每个导出子句需要两个父子句参与归结 (4) 最终子句为空子句：$d^*_k = \bot$，表示该子句不包含任何变量，在任何赋值下都为假，从而证明原公式不可满足。
     
-    归结证明的正确性基于以下事实：归结式是两个父子句的逻辑结论。若赋值$\alpha$使得$C_1 \wedge C_2$为真，则必有$\text{pivot}_i$为真或为假。若$\text{pivot}_i$为真，则$C_2$中除$\neg\text{pivot}_i$外必有其他文字为真；若$\text{pivot}_i$为假，则$C_1$中除$\text{pivot}_i$外必有其他文字为真。因此，归结式$d^*_i$必为真，保证了推导的可靠性。空子句$\bot$的导出意味着矛盾，即原公式在逻辑上不可满足。
+    归结证明的正确性基于以下事实：归结式是两个父子句的逻辑结论。\cite{10.1007/978-3-540-72788-0_31}若赋值$\alpha$使得$C_1 \wedge C_2$为真，则必有$\text{pivot}_i$为真或为假。若$\text{pivot}_i$为真，则$C_2$中除$\neg\text{pivot}_i$外必有其他文字为真；若$\text{pivot}_i$为假，则$C_1$中除$\text{pivot}_i$外必有其他文字为真。因此，归结式$d^*_i$必为真，保证了推导的可靠性。空子句$\bot$的导出意味着矛盾，即原公式在逻辑上不可满足。
     
     \begin{algorithm}[H]
         \SetAlgoLined

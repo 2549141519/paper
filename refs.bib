@@ -572,7 +572,60 @@ location = {Los Angeles, CA, USA},
 series = {CCS '22}
 }
 
+@InProceedings{10.1007/978-3-030-45721-1_24,
+author="B{\"u}nz, Benedikt
+and Fisch, Ben
+and Szepieniec, Alan",
+editor="Canteaut, Anne
+and Ishai, Yuval",
+title="Transparent SNARKs from DARK Compilers",
+booktitle="Advances in Cryptology -- EUROCRYPT 2020",
+year="2020",
+publisher="Springer International Publishing",
+address="Cham",
+pages="677--706",
+abstract="We construct a new polynomial commitment scheme for univariate and multivariate polynomials over finite fields, with logarithmic size evaluation proofs and verification time, measured in the number of coefficients of the polynomial. The underlying technique is a Diophantine Argument of Knowledge (DARK), leveraging integer representations of polynomials and groups of unknown order. Security is shown from the strong RSA and the adaptive root assumptions. Moreover, the scheme does not require a trusted setup if instantiated with class groups. We apply this new cryptographic compiler to a restricted class of algebraic linear IOPs, which we call Polynomial IOPs, to obtain doubly-efficient public-coin interactive arguments of knowledge for any NP relation with succinct communication. With linear preprocessing, the online verifier's work is logarithmic in the circuit complexity of the relation.",
+isbn="978-3-030-45721-1"
+}
 
+@article{VIDAL2024112160,
+title = {Vulnerability detection techniques for smart contracts: A systematic literature review},
+journal = {Journal of Systems and Software},
+volume = {217},
+pages = {112160},
+year = {2024},
+issn = {0164-1212},
+doi = {https://doi.org/10.1016/j.jss.2024.112160},
+url = {https://www.sciencedirect.com/science/article/pii/S016412122400205X},
+author = {Fernando Richter Vidal and Naghmeh Ivaki and Nuno Laranjeiro},
+keywords = {Blockchain, Smart contract, Smart contract security, Vulnerability detection, Verification tools},
+abstract = {The number of applications supported by blockchain smart contracts has been greatly increasing in recent years, with smart contracts now being used across several domains, such as the music industry, finance, and retail, to name a few. Despite being used in business-critical contexts, the number of security vulnerabilities in smart contracts has also been increasing, with many of them being exploited and resulting in huge financial and reputation losses. This is despite the enormous effort that is being placed into the research and development of vulnerability detection tools and techniques, which have also greatly increased in number and type in the last few years. Motivated by the recent increase in both vulnerabilities and vulnerability detection techniques, this paper reviews the latest research in smart contract vulnerability detection, emphasizing the techniques being used, the vulnerabilities targeted, and the characteristics of the dataset used for evaluating the technique. We mapped the vulnerabilities against two common vulnerability classification schemes (DASP and SWC) and performed a consolidated analysis. We identified the current research trends and gaps in each technique and highlighted future research opportunities in the field.}
+}
+
+@inproceedings{10.5555/2671225.2671275,
+author = {Ben-Sasson, Eli and Chiesa, Alessandro and Tromer, Eran and Virza, Madars},
+title = {Succinct non-interactive zero knowledge for a von Neumann architecture},
+year = {2014},
+isbn = {9781931971157},
+publisher = {USENIX Association},
+address = {USA},
+abstract = {We build a system that provides succinct noninteractive zero-knowledge proofs (zk-SNARKs) for program executions on a von Neumann RISC architecture. The system has two components: a cryptographic proof system for verifying satisfiability of arithmetic circuits, and a circuit generator to translate program executions to such circuits. Our design of both components improves in functionality and efficiency over prior work, as follows.Our circuit generator is the first to be universal: it does not need to know the program, but only a bound on its running time. Moreover, the size of the output circuit depends additively (rather than multiplicatively) on program size, allowing verification of larger programs.The cryptographic proof system improves proving and verification times, by leveraging new algorithms and a pairing library tailored to the protocol.We evaluated our system for programs with up to 10,000 instructions, running for up to 32,000 machine steps, each of which can arbitrarily access random-access memory; and also demonstrated it executing programs that use just-in-time compilation. Our proofs are 230 bytes long at 80 bits of security, or 288 bytes long at 128 bits of security. Typical verification time is 5 ms, regardless of the original program's running time.},
+booktitle = {Proceedings of the 23rd USENIX Conference on Security Symposium},
+pages = {781–796},
+numpages = {16},
+location = {San Diego, CA},
+series = {SEC'14}
+}
+
+@article{Gabizon2019PLONKPO,
+  title={PLONK: Permutations over Lagrange-bases for Oecumenical Noninteractive arguments of Knowledge},
+  author={Ariel Gabizon and Zachary J. Williamson and Oana-Madalina Ciobotaru},
+  journal={IACR Cryptol. ePrint Arch.},
+  year={2019},
+  volume={2019},
+  pages={953},
+  url={https://api.semanticscholar.org/CorpusID:201685538}
+}
 
 
 
