@@ -1,24 +1,23 @@
 % !TEX root = ../main.tex
 
-\begin{abstract}[zh]
-  中文摘要应该将学位论文的内容要点简短明了地表达出来，应该包含论文中的基本信息，
-  体现科研工作的核心思想。摘要内容应涉及本项科研工作的目的和意义、研究方法、研究
-  成果、结论及意义。注意突出学位论文中具有创新性的成果和新见解的部分。摘要中不宜
-  使用公式、化学结构式、图表和非公知公用的符号和术语，不标注引用文献编号。硕士学
-  位论文中文摘要字数为 500 字左右，博士学位论文中文摘要字数为 800 字左右。英文摘
-  要内容应与中文摘要内容一致。
 
-  摘要页的下方注明本文的关键词（4 \textasciitilde{} 6 个）。
+\begin{abstract}[zh]
+    程序验证（Program Verification）通过形式化方法确保软件满足其规范要求，在安全关键系统中具有重要应用价值。现有的程序验证方法通常将程序执行编码为逻辑公式，并借助可满足性模理论求解器进行验证，最终通过位分解技术归约为布尔可满足性（Boolean Satisfiability, SAT）问题求解。然而，这一验证过程存在两个挑战：首先，验证过程必须完整暴露程序的内部逻辑和实现细节，无法保护程序的隐私性；其次，当多方需要独立验证同一程序时，每个验证方都需要重复执行完整的计算过程，导致大量的冗余计算开销。
+    
+    零知识证明（Zero-Knowledge Proof, ZKP）技术为隐私保护的程序验证提供了理论基础。零知识证明系统能够生成紧凑的、可重用的证明，使得验证方能够以极低的计算开销验证计算的正确性，同时可证明地隐藏被验证程序的内部逻辑。特别是零知识简洁非交互式知识论证（Zero-Knowledge Succinct Non-Interactive Argument of Knowledge, zk-SNARK）协议，通过将计算问题编码为算术电路或多项式约束，实现了证明规模与验证时间的次线性增长，为大规模程序验证提供了可行的技术路径。
+  
+    针对上述挑战，本研究提出了一种基于零知识证明的两阶段协议，实现了对程序验证全流程的隐私保护。在第一阶段，采用基于HyperPlonk协议的零知识虚拟机（Zero-Knowledge Virtual Machine, zkVM）执行两类程序验证方案：一是基于SAT的程序验证，通过静态单赋值（Static Single Assignment, SSA）变换将程序编码为布尔可满足性（SAT）公式，验证程序满足其规约；二是基于符号执行（Symbolic Execution）的程序验证，通过探索程序路径并生成路径约束，实现可达性验证和漏洞检测。该虚拟机利用HyperPlonk的多项式承诺和查找论证机制，基于Plonkish协议构建，通过约束系统和承诺方案确保验证过程严格避免泄露程序的语义信息、控制流结构及中间计算状态。在第二阶段，针对不同类型的SAT求解结果采用差异化的算术化策略：对于不可满足（UNSAT）实例，提出挑战值编码技术，将归结证明（Resolution Proof）中的变长子句压缩为单个有限域元素，通过Plonkish电路验证归结推导的正确性；对于可满足（SAT）实例，设计双矩阵赋值存储方案，通过互斥性约束在Plonkish电路中验证满足赋值的唯一性和完整性。整个协议实现了程序验证的零知识证明，验证者仅能观察到验证结果或漏洞存在性，而无法获取程序逻辑、验证条件或触发输入等敏感信息。
+  
+    本研究在布尔逻辑求解器基准测试集上进行了系统性评估，实验结果表明所提方法实现了高效的验证性能：对于不可满足实例，验证时间与子句宽度无关；对于可满足实例，验证时间与公式规模无关。所生成的零知识证明不仅能够高效验证程序性质，还提供了端到端的隐私保障，证明了将零知识证明技术应用于程序验证领域的可行性和有效性。该研究为构建隐私保护的形式化验证系统提供了新的技术方案，对推动程序验证技术在隐私敏感场景中的应用具有重要意义。
 \end{abstract}
 
-\begin{abstract}[en]
-  Shanghai Jiao Tong University (SJTU) is a key university in China. SJTU was
-  founded in 1896. It is one of the oldest universities in China. The University
-  has nurtured large numbers of outstanding figures include JIANG Zemin, DING
-  Guangen, QIAN Xuesen, Wu Wenjun, WANG An, etc.
 
-  SJTU has beautiful campuses, Bao Zhaolong Library, Various laboratories. It
-  has been actively involved in international academic exchange programs. It is
-  the center of CERNet in east China region, through computer networks, SJTU has
-  faster and closer connection with the world.
+\begin{abstract}[en]
+  Program verification ensures software compliance with formal specifications through rigorous mathematical methods, playing a critical role in safety-critical systems. Existing program verification approaches typically encode program execution as logical formulas and leverage Satisfiability Modulo Theories (SMT) solvers for verification, ultimately reducing to Boolean Satisfiability (SAT) problem solving through bit-blasting techniques. However, this verification process faces two fundamental challenges: first, the verification process must fully expose the program's internal logic and implementation details, failing to protect program privacy; second, when multiple parties need to independently verify the same program, each verifier must repeat the entire computational process, resulting in substantial redundant computational overhead.
+
+  Zero-Knowledge Proof (ZKP) technology provides a theoretical foundation for privacy-preserving program verification. Zero-knowledge proof systems can generate compact, reusable proofs that enable verifiers to validate computational correctness with minimal computational overhead while provably concealing the internal logic of the verified program. In particular, Zero-Knowledge Succinct Non-Interactive Argument of Knowledge (zk-SNARK) protocols achieve sublinear growth in proof size and verification time by encoding computational problems as arithmetic circuits or polynomial constraints, providing a feasible technical pathway for large-scale program verification.
+
+  Addressing these challenges, this research proposes a two-phase protocol based on zero-knowledge proofs that achieves comprehensive privacy protection throughout the program verification process. In the first phase, a Zero-Knowledge Virtual Machine (zkVM) executes two types of program verification schemes: first, SAT-based program verification that encodes programs into Boolean satisfiability (SAT) formulas through Static Single Assignment (SSA) transformation to verify program compliance with specifications; second, Symbolic Execution-based program verification that explores program paths and generates path constraints to enable reachability verification and vulnerability detection. The virtual machine is built on the Plonkish protocol, utilizing constraint systems and commitment schemes to ensure that the verification process strictly avoids leaking semantic information, control flow structures, and intermediate computational states of the program. In the second phase, differentiated arithmetization strategies are employed for different types of SAT solving results: for unsatisfiable (UNSAT) instances, a challenge value encoding technique is proposed that compresses variable-length clauses in resolution proofs into single finite field elements, verifying the correctness of resolution derivations through Plonkish circuits; for satisfiable (SAT) instances, a dual-matrix assignment storage scheme is designed that verifies the uniqueness and completeness of satisfying assignments in Plonkish circuits through mutual exclusivity constraints. The entire protocol implements zero-knowledge proofs for program verification, where verifiers can only observe verification results or vulnerability existence without obtaining sensitive information such as program logic, verification conditions, or triggering inputs.
+
+ This research conducts systematic evaluation on Boolean logic solver benchmark suites. Experimental results demonstrate that the proposed method achieves efficient verification performance: for unsatisfiable instances, verification time is independent of clause width; for satisfiable instances, verification time is independent of formula size. The generated zero-knowledge proofs not only enable efficient verification of program properties but also provide end-to-end privacy guarantees, demonstrating the feasibility and effectiveness of applying zero-knowledge proof technology to the program verification domain. This research provides a novel technical solution for constructing privacy-preserving formal verification systems and holds significant implications for advancing the application of program verification technology in privacy-sensitive scenarios.
 \end{abstract}
